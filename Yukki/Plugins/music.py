@@ -193,7 +193,7 @@ async def play(_, message: Message):
             return await mystic.edit_text("live stream not supported")
         if views == "None":
             return await mystic.edit_text("live stream not supported")
-        semxbabes = (f"📥 downloading: {title[:55]}")
+        semxbabes = (f"📥 downloading: {title[:50]}")
         await mystic.edit(semxbabes)
         theme = random.choice(themes)
         ctitle = message.chat.title
