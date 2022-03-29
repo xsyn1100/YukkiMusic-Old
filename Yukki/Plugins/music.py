@@ -60,7 +60,7 @@ def convert_seconds(seconds):
     return "%02d:%02d" % (minutes, seconds)
 
 
-@Client.on_message(command(["play", "play@synxrobot"]) & other_filters)
+@Client.on_message(command(["play", "play@VeezMegaBot"]) & other_filters)
 async def play(_, message: Message):
     await message.delete()
     chat_id = message.chat.id
