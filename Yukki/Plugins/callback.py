@@ -94,7 +94,7 @@ async def closesmex(_,CallbackQuery):
     try:
         smex, user_id = callback_request.split("|") 
     except Exception as e:
-        await CallbackQuery.message.edit(f"❌ an error occured\n\n**reason:** `{e}`")
+        await CallbackQuery.message.edit(f"an error occured\n\n**reason:** `{e}`")
         return 
     if CallbackQuery.from_user.id != int(user_id):
         await CallbackQuery.answer("💡 sorry this is not your request", show_alert=True)
@@ -120,22 +120,22 @@ async def pausevc(_,CallbackQuery):
             rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
             await CallbackQuery.edit_message_text(f"⏸ music playback has paused", reply_markup=play_keyboard)
         else:
-            await CallbackQuery.answer(f"❌ no music is currently playing", show_alert=True)
+            await CallbackQuery.answer(f" no music is currently playing", show_alert=True)
             return
     else:
-        await CallbackQuery.answer(f"❌ no music is currently playing", show_alert=True)
+        await CallbackQuery.answer(f" no music is currently playing", show_alert=True)
    
     
 @Client.on_callback_query(filters.regex("resumevc"))
 async def resumevc(_,CallbackQuery):  
     a = await app.get_chat_member(CallbackQuery.message.chat.id , CallbackQuery.from_user.id)
     if not a.can_manage_voice_chats:
-        return await CallbackQuery.answer("you must be admin with permissions:\n\n❌ » Manage video chat", show_alert=True)
+        return await CallbackQuery.answer("you must be admin with permissions:\n\n » Manage video chat", show_alert=True)
     checking = CallbackQuery.from_user.first_name
     chat_id = CallbackQuery.message.chat.id
     if await is_active_chat(chat_id):
         if await is_music_playing(chat_id):
-            await CallbackQuery.answer("❌ no music is paused", show_alert=True)
+            await CallbackQuery.answer(" no music is paused", show_alert=True)
             return    
         else:
             await music_on(chat_id)
@@ -146,14 +146,14 @@ async def resumevc(_,CallbackQuery):
             rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
             await CallbackQuery.edit_message_text(f"▶ music playback has resumed", reply_markup=play_keyboard)
     else:
-        await CallbackQuery.answer(f"❌ no music is currently playing", show_alert=True)
+        await CallbackQuery.answer(f"no music is currently playing", show_alert=True)
    
     
 @Client.on_callback_query(filters.regex("skipvc"))
 async def skipvc(_,CallbackQuery): 
     a = await app.get_chat_member(CallbackQuery.message.chat.id , CallbackQuery.from_user.id)
     if not a.can_manage_voice_chats:
-        return await CallbackQuery.answer("you must be admin with permissions:\n\n❌ » Manage video chat", show_alert=True)
+        return await CallbackQuery.answer("you must be admin with permissions:\n\n » Manage video chat", show_alert=True)
     checking = CallbackQuery.from_user.first_name
     chat_id = CallbackQuery.message.chat.id
     chat_title = CallbackQuery.message.chat.title
@@ -166,7 +166,7 @@ async def skipvc(_,CallbackQuery):
             rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
             await remove_active_chat(chat_id)
             await CallbackQuery.answer()
-            await CallbackQuery.message.reply(f"**{rpk} want to skipped music**\n\n❌ no more music in __Queues__\n\n» userbot leaving voice chat")
+            await CallbackQuery.message.reply(f"**{rpk} want to skipped music**\n\n no more music in __Queues__\n\n» userbot leaving voice chat")
             await yukki.pytgcalls.leave_group_call(chat_id)
             return
         else:
@@ -202,24 +202,24 @@ async def skipvc(_,CallbackQuery):
                         if flex[str(bytesx)] == 1:
                             flex[str(bytesx)] += 1
                             sedtime.sleep(1)
-                            mystic.edit(f"Downloading {title[:50]}\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                         if per > 500:    
                             if flex[str(bytesx)] == 2:
                                 flex[str(bytesx)] += 1
                                 sedtime.sleep(0.5)
-                                mystic.edit(f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                                mystic.edit(f"📥 Downloading {title[:50]}...\n\n** 📚FileSize:** {size}\n** 🗃Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                                 print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} in {chat_title} | ETA: {eta} seconds")
                         if per > 800:    
                             if flex[str(bytesx)] == 3:
                                 flex[str(bytesx)] += 1
                                 sedtime.sleep(0.5)
-                                mystic.edit(f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                                mystic.edit(f"📥 Downloading {title[:50]}....\n\n** 📚FileSize:** {size}\n** 🗃Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                                 print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} in {chat_title} | ETA: {eta} seconds")
                         if per == 1000:    
                             if flex[str(bytesx)] == 4:
                                 flex[str(bytesx)] = 1
                                 sedtime.sleep(0.5)
-                                mystic.edit(f"Downloading {title[:50]}.....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec") 
+                                mystic.edit(f"📥 Downloading {title[:50]}.....\n\n** 📚FileSize:** {size}\n** 🗃Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec") 
                                 print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} in {chat_title} | ETA: {eta} seconds")
                 loop = asyncio.get_event_loop()
                 xx = await loop.run_in_executor(None, download, url, my_hook)
@@ -252,7 +252,7 @@ async def skipvc(_,CallbackQuery):
                 chat_id,
                 photo=thumb,
                 reply_markup=InlineKeyboardMarkup(buttons),    
-                caption=(f"⏭ **Skipped to the next track**\n\n🗂 **Name** {title[:80]}\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {semx.mention}")
+                caption=(f"⏭ **Skipped to the next track**\n\n🏷 **Title** {title[:80]}\n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {semx.mention}")
             )   
                 os.remove(thumb)
             else:      
@@ -286,7 +286,7 @@ async def skipvc(_,CallbackQuery):
                 chat_id,
                 photo=f"downloads/{_chat_}final.png",
                 reply_markup=InlineKeyboardMarkup(buttons),
-                caption=f"⏭ **Skipped to the next track**\n\n🗂 **Name:** {title[:80]}\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {username}",
+                caption=f"⏭ **Skipped to the next track**\n\n🏷 **Title:** {title[:80]}\n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {username}",
                 )
                 return           
             
@@ -295,7 +295,7 @@ async def skipvc(_,CallbackQuery):
 async def stopvc(_,CallbackQuery):
     a = await app.get_chat_member(CallbackQuery.message.chat.id , CallbackQuery.from_user.id)
     if not a.can_manage_voice_chats:
-        return await CallbackQuery.answer("you must be admin with permissions:\n\n❌ » Manage video chat", show_alert=True)
+        return await CallbackQuery.answer("you must be admin with permissions:\n\n » Manage video chat", show_alert=True)
     checking = CallbackQuery.from_user.first_name
     chat_id = CallbackQuery.message.chat.id
     if await is_active_chat(chat_id):
@@ -311,9 +311,9 @@ async def stopvc(_,CallbackQuery):
         user_id = CallbackQuery.from_user.id
         user_name = CallbackQuery.from_user.first_name
         rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
-        await CallbackQuery.edit_message_text("✅ this music playback has ended", reply_markup=close_keyboard)
+        await CallbackQuery.edit_message_text(" this music playback has ended", reply_markup=close_keyboard)
     else:
-        await CallbackQuery.answer(f"❌ no music is currently playing", show_alert=True)
+        await CallbackQuery.answer(f" no music is currently playing", show_alert=True)
 
 
 @Client.on_callback_query(filters.regex("play_playlist"))
@@ -413,7 +413,7 @@ Req By : {Name}
                             except Exception as e:
                                 taken = "00:00"
                             size = d['_total_bytes_str']
-                            mystic.edit(f"**Downloaded {title[:50]}.....**\n\n**FileSize:** {size}\n**Time Taken:** {taken} sec\n\n**Converting File** [__FFmpeg processing__]")
+                            mystic.edit(f"**📥 Downloaded {title[:50]}.....**\n\n**📚 FileSize:** {size}\n**⚡ Time Taken:** {taken} sec\n\n**📝 Converting File** [__FFmpeg processing__]")
                             print(f"[{videoid}] Downloaded | Elapsed: {taken} seconds")  
                     loop = asyncio.get_event_loop()
                     xx = await loop.run_in_executor(None, download, url, my_hook)
@@ -531,26 +531,26 @@ Req By : {Name}
                                 flex[str(bytesx)] += 1
                                 try:
                                     if eta > 2:
-                                        mystic.edit(f"Downloading {title[:50]}\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                                        mystic.edit(f"📥Downloading {title[:50]}\n\n**📚FileSize:** {size}\n**🗃Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                                 except Exception as e:
                                     pass
                             if per > 250:    
                                 if flex[str(bytesx)] == 2:
                                     flex[str(bytesx)] += 1
                                     if eta > 2:     
-                                        mystic.edit(f"Downloading {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                                        mystic.edit(f"📥 Downloading {title[:50]}..\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                                     print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
                             if per > 500:    
                                 if flex[str(bytesx)] == 3:
                                     flex[str(bytesx)] += 1
                                     if eta > 2:     
-                                        mystic.edit(f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                                        mystic.edit(f"📥 Downloading {title[:50]}...\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                                     print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
                             if per > 800:    
                                 if flex[str(bytesx)] == 4:
                                     flex[str(bytesx)] += 1
                                     if eta > 2:    
-                                        mystic.edit(f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                                        mystic.edit(f"📥 Downloading {title[:50]}....\n\n**📚 FileSize:** {size}\n** 🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                                     print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
                         if d['status'] == 'finished': 
                             try:
@@ -558,7 +558,7 @@ Req By : {Name}
                             except Exception as e:
                                 taken = "00:00"
                             size = d['_total_bytes_str']
-                            mystic.edit(f"**Downloaded: {title[:50]}...**\n\n**Size:** {size}\n**Time:** `{taken}` sec\n\n**Converting File** [__FFmpeg processing__]")
+                            mystic.edit(f"**📥 Downloaded: {title[:50]}...**\n\n**📚 Size:** {size}\n**⚡ Time:** `{taken}` sec\n\n**📝 Converting File** [__FFmpeg processing__]")
                             print(f"[{videoid}] Downloaded | Elapsed: {taken} seconds")  
                     loop = asyncio.get_event_loop()
                     xx = await loop.run_in_executor(None, download, url, my_hook)
@@ -629,7 +629,7 @@ async def group_playlist(_,CallbackQuery):
     await CallbackQuery.answer()
     a = await app.get_chat_member(CallbackQuery.message.chat.id , CallbackQuery.from_user.id)
     if not a.can_manage_voice_chats:
-        return await CallbackQuery.answer("you must be admin with permissions:\n\n❌ » Manage video chat", show_alert=True)
+        return await CallbackQuery.answer("you must be admin with permissions:\n\n » Manage video chat", show_alert=True)
     callback_data = CallbackQuery.data.strip()
     chat_id = CallbackQuery.message.chat.id
     callback_request = callback_data.split(None, 1)[1]
@@ -637,7 +637,7 @@ async def group_playlist(_,CallbackQuery):
     try:
         url,smex= callback_request.split("|") 
     except Exception as e:
-        return await CallbackQuery.message.edit(f"❌ an error occured\n\n**reason:** `{e}`")
+        return await CallbackQuery.message.edit(f" an error occured\n\n**reason:** `{e}`")
     Name = CallbackQuery.from_user.mention
     _count = await get_note_names(chat_id)
     count = 0
@@ -659,7 +659,7 @@ async def group_playlist(_,CallbackQuery):
             duration = (result["duration"])
             videoid = (result["id"])
     except Exception as e:
-            return await CallbackQuery.message.reply_text(f"❌ an error occured.\n\nplease forward to @VeezSupportGroup\n\n**reason:** `{e}`") 
+            return await CallbackQuery.message.reply_text(f" an error occured.\n\nplease forward to @VeezSupportGroup\n\n**reason:** `{e}`") 
     _check = await get_playlist(chat_id, videoid)
     title = title[:50]
     if _check:
@@ -684,7 +684,7 @@ async def pla_playylistt(_,CallbackQuery):
     try:
         url,smex= callback_request.split("|") 
     except Exception as e:
-        return await CallbackQuery.message.edit(f"❌ an error occured\n\n**reason:** `{e}`")
+        return await CallbackQuery.message.edit(f" an error occured\n\n**reason:** `{e}`")
     Name = CallbackQuery.from_user.mention
     _count = await get_note_names(userid)
     count = 0
@@ -783,7 +783,7 @@ async def G_list(_,CallbackQuery):
     user_id = CallbackQuery.from_user.id
     _playlist = await get_note_names(CallbackQuery.message.chat.id)
     if not _playlist:
-        return await CallbackQuery.answer(f"❌ you not have Group playlist on database, try to adding music into playlist.", show_alert=True)
+        return await CallbackQuery.answer(f" you not have Group playlist on database, try to adding music into playlist.", show_alert=True)
     else:
         await CallbackQuery.answer()
         j = 0
@@ -835,17 +835,17 @@ async def G_list(_,CallbackQuery):
 async def cbgroupdel(_,CallbackQuery):  
     a = await app.get_chat_member(CallbackQuery.message.chat.id , CallbackQuery.from_user.id)
     if not a.can_manage_voice_chats:
-        return await CallbackQuery.answer("you must be admin with permissions:\n\n❌ » Manage video chat", show_alert=True)
+        return await CallbackQuery.answer("you must be admin with permissions:\n\n » Manage video chat", show_alert=True)
     await CallbackQuery.message.delete() 
     await CallbackQuery.answer()
     _playlist = await get_note_names(CallbackQuery.message.chat.id)                                    
     if not _playlist:
-        return await CallbackQuery.message.reply_text("❌ This Group not have a playlist on database.")
+        return await CallbackQuery.message.reply_text(" This Group not have a playlist on database.")
     else:
         titlex = []
         for note in _playlist:
             await delete_playlist(CallbackQuery.message.chat.id, note)
-    await CallbackQuery.message.reply_text("✅ successfully deleted your Group's whole playlist")  
+    await CallbackQuery.message.reply_text("successfully deleted your Group's whole playlist")  
     
     
 @Client.on_callback_query(filters.regex("cbdel"))
@@ -854,9 +854,9 @@ async def delplcb(_,CallbackQuery):
     await CallbackQuery.message.delete() 
     _playlist = await get_note_names(CallbackQuery.from_user.id)                                    
     if not _playlist:
-        return await CallbackQuery.message.reply_text("❌ You not have a playlist on database.")
+        return await CallbackQuery.message.reply_text(" You not have a playlist on database.")
     else:
         titlex = []
         for note in _playlist:
             await delete_playlist(CallbackQuery.from_user.id, note)
-    await CallbackQuery.message.reply_text("✅ successfully deleted your whole playlist")
+    await CallbackQuery.message.reply_text("successfully deleted your whole playlist")
