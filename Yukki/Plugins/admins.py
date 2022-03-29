@@ -79,9 +79,9 @@ async def pause_cmd(_, message):
     checking = message.from_user.mention
     chat_id = message.chat.id
     if not await is_active_chat(chat_id):
-        return await message.reply_text("❌ **no music is currently playing**")
+        return await message.reply_text(" **no music is currently playing**")
     elif not await is_music_playing(message.chat.id):
-        return await message.reply_text("❌ **no music is currently playing**")   
+        return await message.reply_text(" **no music is currently playing**")   
     await music_off(chat_id)
     await yukki.pytgcalls.pause_stream(chat_id)
     await message.reply_text("⏸ **Track paused.**\n\n• **To resume the playback, use the**\n» /resume command.")
@@ -98,9 +98,9 @@ async def stop_cmd(_, message):
     checking = message.from_user.mention
     chat_id = message.chat.id
     if not await is_active_chat(chat_id):
-        return await message.reply_text("❌ **no music is currently playing**")
+        return await message.reply_text(" **no music is currently playing**")
     elif await is_music_playing(message.chat.id):
-        return await message.reply_text("❌ **no music is currently playing**") 
+        return await message.reply_text(" **no music is currently playing**") 
     else:
         await music_on(chat_id)
         await yukki.pytgcalls.resume_stream(message.chat.id)
@@ -124,9 +124,9 @@ async def stop_cmd(_, message):
             pass                        
         await remove_active_chat(chat_id)
         await yukki.pytgcalls.leave_group_call(message.chat.id)
-        await message.reply_text("✅ The userbot has disconnected from the video chat.") 
+        await message.reply_text("🎧 Voicechat End/Stopped By admins") 
     else:
-        return await message.reply_text("❌ **no music is currently playing**")
+        return await message.reply_text(" **no music is currently playing**")
 
 
 @app.on_message(filters.command(["skip", "next"]))
@@ -141,12 +141,12 @@ async def stop_cmd(_, message):
     chat_id = message.chat.id
     chat_title = message.chat.title
     if not await is_active_chat(chat_id):
-        await message.reply_text("❌ **no music is currently playing**")
+        await message.reply_text(" **no music is currently playing**")
     else:
         task_done(chat_id)
         if is_empty(chat_id):
             await remove_active_chat(chat_id)
-            await message.reply_text("❌ no more music in __Queues__ \n\n» userbot leaving video chat")
+            await message.reply_text(" no more music in __Queues__ \n\n» userbot leaving video chat")
             await yukki.pytgcalls.leave_group_call(message.chat.id)
             return  
         else:
@@ -156,7 +156,7 @@ async def stop_cmd(_, message):
             f3 = (afk[2])
             finxx = (f"{f1}{f2}{f3}")
             if str(finxx) != "raw":   
-                mystic = await message.reply_text("💡 currently playing playlist !\n\n💭 downloading next music from playlist...")
+                mystic = await message.reply_text("💡 currently playing playlist !\n\n📥 downloading next music from playlist...")
                 url = (f"https://www.youtube.com/watch?v={afk}")
                 try:
                     with yt_dlp.YoutubeDL(ytdl_opts) as ytdl:
@@ -227,7 +227,7 @@ async def stop_cmd(_, message):
                 await message.reply_photo(
                 photo= thumb,
                 reply_markup=InlineKeyboardMarkup(buttons),    
-                caption=(f"⏭ **Skipped to the next track**\n\n🗂 **Name:** {title[:80]}\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {semx.mention}")
+                caption=(f"⏭ **Skipped to the next track**\n\n🏷 **Name:** {title[:80]}\n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {semx.mention}")
             )   
                 os.remove(thumb)
             else:      
@@ -257,6 +257,6 @@ async def stop_cmd(_, message):
                 await message.reply_photo(
                 photo=f"downloads/{_chat_}final.png",
                 reply_markup=InlineKeyboardMarkup(buttons),
-                caption=(f"⏭ **Skipped to the next track**\n\n🗂 **Name:** {title[:80]}\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {username}"),
+                caption=(f"⏭ **Skipped to the next track**\n\n🏷 **Name:** {title[:80]}\n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {username}"),
                 )
                 return
