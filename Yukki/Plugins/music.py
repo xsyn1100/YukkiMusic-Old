@@ -172,7 +172,7 @@ async def play(_, message: Message):
         
     elif url:
         query = " ".join(message.command[1:])
-        mystic = await _.send_message(chat_id, "🔍 **Searching song...**")
+        mystic = await _.send_message(chat_id, "🔍 **Searching song**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = VideosSearch(query, limit=1)
@@ -263,7 +263,7 @@ async def play(_, message: Message):
             return
         
         query = " ".join(message.command[1:])
-        mystic = await _.send_message(chat_id, "🔍 **Searching song ...**")
+        mystic = await _.send_message(chat_id, "🔍 **Searching song**")
         try:
             a = VideosSearch(query, limit=5)
             result = (a.result()).get("result")
@@ -283,12 +283,12 @@ async def play(_, message: Message):
             ID4 = (result[3]["id"])
             ID5 = (result[4]["id"])
         except Exception as e:
-            return await mystic.edit_text(f"😕 Sorry, we **couldn't** find the song you were looking for\n\n• Check that the **name is correct** or **try by searching the artist.**", reply_markup=close_keyboard)
+            return await mystic.edit_text(f"Sorry, we **couldn't** find the song you were looking for\n\n• Check that the **name is correct** or **try by searching the artist.**", reply_markup=close_keyboard)
         thumb = "cache/results.png"
         url = "https://www.youtube.com/watch?v={id}"
         buttons = search_markup(ID1, ID2, ID3, ID4, ID5, duration1, duration2, duration3, duration4, duration5, user_id, query)
         await mystic.edit(
-            f"❓ Choose the results to play !\n\n1️⃣ <b>[{title1[:30]}...]({url})</b>\n  ┗ 💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  ┗ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n2️⃣ <b>[{title2[:30]}...]({url})</b>\n  ┗ 💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  ┗ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n3️⃣ <b>[{title3[:30]}...]({url})</b>\n  ┗ 💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  ┗ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n4️⃣ <b>[{title4[:30]}...]({url})</b>\n  ┗ 💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  ┗ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n5️⃣ <b>[{title5[:30]}...]({url})</b>\n  ┗ 💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  ┗ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__)",    
+            f"❓ Choose the results to play !\n\n1️⃣ <b>[{title1[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n2️⃣ <b>[{title2[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n3️⃣ <b>[{title3[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n4️⃣ <b>[{title4[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n5️⃣ <b>[{title5[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__",    
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True
         ) 
