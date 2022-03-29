@@ -20,7 +20,7 @@ def stream_markup(videoid, user_id):
 def play_markup(videoid, user_id):
     buttons= [
             [
-                InlineKeyboardButton(text="• Menu", callback_data=f'other {videoid}|{user_id}'),      
+                InlineKeyboardButton(text="♪ Menu", callback_data=f'other {videoid}|{user_id}'),      
                 InlineKeyboardButton(text="🗑 Close", callback_data=f'close2')
             ],
         ]
@@ -101,7 +101,7 @@ def search_markup(ID1, ID2, ID3, ID4, ID5, duration1, duration2, duration3, dura
                 InlineKeyboardButton(text="5️⃣", callback_data=f'yukki2 {ID5}|{duration5}|{user_id}')
             ],
             [
-                InlineKeyboardButton(text="➡", callback_data=f'popat 1|{query}|{user_id}')
+                InlineKeyboardButton(text="➡️", callback_data=f'popat 1|{query}|{user_id}')
             ],
             [
                 InlineKeyboardButton(text="🗑 Close", callback_data=f"ppcl2 smex|{user_id}")
@@ -122,7 +122,7 @@ def search_markup2(ID6, ID7, ID8, ID9, ID10, duration6, duration7, duration8, du
                 InlineKeyboardButton(text="🔟", callback_data=f'yukki2 {ID10}|{duration10}|{user_id}')
             ],
             [
-                InlineKeyboardButton(text="⬅", callback_data=f'popat 2|{query}|{user_id}')
+                InlineKeyboardButton(text="⬅️", callback_data=f'popat 2|{query}|{user_id}')
             ],
             [
                 InlineKeyboardButton(text="🗑 Close", callback_data=f"ppcl2 smex|{user_id}")
@@ -144,7 +144,7 @@ start_keyboard = InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "• Commands", url="https://telegra.ph/%F0%9D%95%BB%E1%B4%80%E1%B4%9C%CA%9F-02-17"
+                        "📚 Commands", url="https://telegra.ph/%F0%9D%95%BB%E1%B4%80%E1%B4%9C%CA%9F-02-17"
                     )
                 ],
                 [
