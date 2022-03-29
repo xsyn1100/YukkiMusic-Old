@@ -20,35 +20,27 @@ from Yukki.YukkiUtilities.database.queue import (is_active_chat, add_active_chat
 from Yukki.YukkiUtilities.database.sudo import (get_sudoers, get_sudoers, remove_sudo)
 
 def start_pannel():  
-    buttons  = [
-            [
-                InlineKeyboardButton(text="📚 Commands", url="https://telegra.ph/Veez-Mega-Guide-01-10")
-            ],
+    buttons  = [            
             [ 
-                InlineKeyboardButton(text="📣 Channel", url="https://t.me/levinachannel"),
-                InlineKeyboardButton(text="💭 Group", url="https://t.me/VeezSupportGroup")
+                InlineKeyboardButton(text="Channel", url="https://t.me/levinachannel"),
+                InlineKeyboardButton(text="Group", url="https://t.me/VeezSupportGroup")
             ],
     ]
-    return "✨ This is veez mega, a bot that can play music trought the Telegram Group video chat.", buttons
+    return "✨ This is Syn Robot, a bot that can play music trought the Telegram Group video chat.", buttons
 
 pstart_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
                         "➕ Add me to a Group ➕", url="https://t.me/VeezMegaBot?startgroup=true")
+               ],[
+                    InlineKeyboardButton(
+                        "👥 Official Group", url="https://t.me/synxsupport"), 
+                    InlineKeyboardButton(
+                        "📣 Official Channel", url="https://t.me/synxupdate")
                 ],[
                     InlineKeyboardButton(
-                        "📚 Commands", url="https://telegra.ph/Veez-Mega-Guide-01-10"),
-                    InlineKeyboardButton(
-                        "♥️ Donate", url="https://t.me/VMDonationBot")
-                ],[
-                    InlineKeyboardButton(
-                        "👥 Official Group", url="https://t.me/VeezSupportGroup"), 
-                    InlineKeyboardButton(
-                        "📣 Official Channel", url="https://t.me/levinachannel")
-                ],[
-                    InlineKeyboardButton(
-                        "❓ Setup Guide", url="https://telegra.ph/Veez-Mega-Guid-11-19")
+                        "🙋‍♂️ Owner", url="https://t.me/shshtst")
                 ]
             ]
         )
@@ -63,9 +55,9 @@ async def welcome(_, message: Message):
     for member in message.new_chat_members:
         try:
             if member.id in OWNER:
-                return await message.reply_text(f"🧙🏻‍♂️ • {member.mention} •\n\n• **Staff** of veez mega has joined this Group.")
+                return await message.reply_text(f"🧙🏻‍♂️ • {member.mention} •\n\n• **Staff** of syn robot has joined this Group.")
             if member.id in SUDOERS:
-                return await message.reply_text(f"🧙🏻‍♂️ • {member.mention} •\n\n• **Staff** of veez mega has joined this Group.")
+                return await message.reply_text(f"🧙🏻‍♂️ • {member.mention} •\n\n• **Staff** of syn robot has joined this Group.")
             if member.id == ASSID:
                 await remove_active_chat(chat_id)
             if member.id == BOT_ID:
@@ -82,7 +74,7 @@ async def start(_, message: Message):
         await message.reply(f"❌ **This chat not authorized !**\n\nI can't stream music in non-authorized chat, ask to sudo user to auth this chat.\n\nCheck the sudo user list [From Here](https://t.me/{BOT_USERNAME}?start=sudolist)", disable_web_page_preview=True)
         return await app.leave_chat(chat_id)
     out = start_pannel()
-    await message.reply_text(f"✨ Hello {message.from_user.mention}, i'm Veez Mega bot.\n\n💭 Appoint me as admin in your Group so i can play music, otherwise you can't use my service.", reply_markup=InlineKeyboardMarkup(out[1]))
+    await message.reply_text(f"✨ Hello {message.from_user.mention}, i'm syn .\n\n💭 Appoint me as admin in your Group so i can play music, otherwise you can't use my service.", reply_markup=InlineKeyboardMarkup(out[1]))
     return
 
 
@@ -93,7 +85,7 @@ async def play(_, message: Message):
         user_name = message.from_user.first_name
         rpk = "["+user_name+"](tg://user?id="+str(user_id)+")" 
         await app.send_message(message.chat.id,
-            text=f"✨ Welcome {rpk} !\n\n💭 [Veez Mega](https://t.me/VeezMegaBot) **allows** you to **play music** on **Groups** through the new **Telegram's video chats** feature !\n\n💡 **Find out** all the **Bot's commands** and how they work by clicking on the » 📚 **Commands** button!",
+            text=f"✨ Welcome {rpk} !\n\n💭 [Syn Robot](https://t.me/synxrobot) **allows** you to **play music** on **Groups** through the new **Telegram's video chats** feature !\n\n💡 **Find out** all the **Bot's commands** and how they work by clicking on the » 📚 **Commands** button!",
             parse_mode="markdown",
             reply_markup=pstart_markup,
             reply_to_message_id=message.message_id,
@@ -121,13 +113,13 @@ async def play(_, message: Message):
             searched_text = f"""
 💡 **Track Informations**
 
-🏷 **Name:** {title}
-⏱ **Duration:** {duration}
+🏷 **Title:** {title}
+🕰 **Duration:** {duration}
 👀 **Views:** {views}
 📣 **Channel:** {channel}
 🔗 **Link:** {link}
 
-⚡️ __Powered by Veez Music AI__"""
+⚡️ __Powered by Syn Robot__"""
             buttons = personal_markup(link)
             userid = message.from_user.id
             thumb = await down_thumb(thumbnail, userid)
