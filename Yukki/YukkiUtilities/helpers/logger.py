@@ -12,6 +12,7 @@ async def LOG_CHAT(message, what):
     mention = "["+user_name+"](tg://user?id="+str(user_id)+")" 
     logger_text = f"""
 **🚀 New {what}**
+
 **• Chat:** {message.chat.title} 
 **• Chat ID:** [`{message.chat.id}`]
 **• User:** {mention}
