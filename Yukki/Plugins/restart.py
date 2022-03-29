@@ -36,7 +36,7 @@ async def restart_server(_, message):
             await remove_active_chat(x)
         except Exception:
             pass
-    x = await message.reply_text(f"restarting veez mega bot.")
+    x = await message.reply_text(f"restarting syn robot.")
     os.system(f"kill -9 {os.getpid()} && python3 -m Yukki")
 
 
@@ -94,7 +94,7 @@ async def bot_leave_group(_, message):
     try:
         await app.leave_chat(chat)
     except Exception as e:
-        await message.reply_text(f"❌ procces failed\n\nreason: `{e}`")
+        await message.reply_text(f" procces failed\n\nreason: `{e}`")
         print(e)
         return
-    await message.reply_text("✅ bot successfully left chat")
+    await message.reply_text("bot successfully left chat")
