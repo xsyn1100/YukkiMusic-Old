@@ -437,7 +437,7 @@ Req By : {Name}
                     m = await CallbackQuery.message.reply_photo(
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),    
-                    caption=(f"🗂 **Name:** [{title[:80]}]({url})\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {checking}")
+                    caption=(f"🏷 **Title:** [{title[:80]}]({url})\n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {checking}")
                 )   
                     os.remove(thumb)
                     await CallbackQuery.message.delete()
@@ -582,7 +582,7 @@ Req By : {Name}
                     m = await CallbackQuery.message.reply_photo(
                     photo=thumb,
                     reply_markup=InlineKeyboardMarkup(buttons),    
-                    caption=(f"🗂 **Name:** [{title[:80]}]({url})\n⏱ **Duration:** `{duration}`\n🧸 **Request by:** {checking}")
+                    caption=(f"🏷 **Title:** [{title[:80]}]({url})\n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {checking}")
                 )   
                     os.remove(thumb)
                     await CallbackQuery.message.delete()
