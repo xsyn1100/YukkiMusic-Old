@@ -104,7 +104,7 @@ async def getspy(_,CallbackQuery):
         user_time[userid] = now + \
                                      timedelta(minutes=youtube_next_fetch)
     except Exception:
-        return await CallbackQuery.message.reply_text("❌ failed to fetch data")
+        return await CallbackQuery.message.reply_text(" failed to fetch data")
     j = 0
     a = 0
     b = 0
@@ -167,10 +167,10 @@ async def getspy(_,CallbackQuery):
                     f += 1
                     a6 = InlineKeyboardButton(text=f"(2160)p 📹 {humanbytes(x['filesize'])}", callback_data=f"ytdata video||{x['format_id']}||{videoid}")   
         else:
-            return await CallbackQuery.message.reply_text("❌ video format not found.")
+            return await CallbackQuery.message.reply_text(" video format not found.")
     universal = InlineKeyboardButton(text="🗑 Close", callback_data=f'close2')
     if j == 0:
-        return await CallbackQuery.message.reply_text("❌ video format not found.")
+        return await CallbackQuery.message.reply_text("video format not found.")
     elif j == 1:
         key = InlineKeyboardMarkup(
             [
@@ -271,7 +271,7 @@ async def getspy(_,CallbackQuery):
             ]
         )    
     else:
-        return await CallbackQuery.message.reply_text("❌ video format not found.")
+        return await CallbackQuery.message.reply_text("video format not found.")
     await CallbackQuery.edit_message_reply_markup(reply_markup=key)
 
     
@@ -323,7 +323,7 @@ upl = InlineKeyboardMarkup(
 def inl_mark(videoid, user_id):
     buttons= [
             [
-                InlineKeyboardButton(text="❌ download or upload failed.", callback_data=f'down')
+                InlineKeyboardButton(text="download or upload failed.", callback_data=f'down')
             ],
             [
                 InlineKeyboardButton(text="⬅️ Back", callback_data=f'good {videoid}|{user_id}'),
@@ -364,7 +364,7 @@ async def boom(_,CallbackQuery):
 ⏱ **Duration:** `{round(x["duration"] / 60)}` min(s)
 📣 **Channel:** {x["uploader"]}
 
-⚡️ __Powered by Veez Music AI__"""    
+⚡️ __Powered by Syn Music AI__"""    
     link = (x["webpage_url"])
     channel = (x["channel_url"])
     perf = (x['uploader'])
