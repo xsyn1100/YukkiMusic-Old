@@ -1,70 +1,64 @@
-from pyrogram import Client, filters
-from pyrogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    InputMediaPhoto,
-    Message,
-)
-from asyncio import QueueEmpty
-from pyrogram import Client, filters
-from pytgcalls import StreamType
-from pytgcalls.types.input_stream import InputAudioStream
-from pytgcalls.types.input_stream import InputStream
-from Music import app, BOT_USERNAME, dbb, SUDOERS
 import os
+import re
 import yt_dlp
-from youtubesearchpython import VideosSearch
-from Music.config import LOG_GROUP_ID
-from Music.MusicUtilities.tgcallsrun import ASS_ACC
-from os import path
+import aiohttp
 import random
-import time as sedtime 
 import asyncio
 import shutil
-from time import time
-from Music import converter
-import aiohttp
-from aiohttp import ClientResponseError, ServerTimeoutError, TooManyRedirects
-from Music import dbb, app, BOT_USERNAME, BOT_ID, ASSID, ASSNAME, ASSUSERNAME, ASSMENTION
-from Music.MusicUtilities.tgcallsrun import (music, convert, download, clear, get, is_empty, put, task_done, smexy)
-from Music.MusicUtilities.helpers.decorators import errors
-from Music.MusicUtilities.helpers.filters import command, other_filters
-from Music.MusicUtilities.helpers.paste import paste
-from Music.MusicUtilities.tgcallsrun import (music, clear, get, is_empty, put, task_done)
-from Music.MusicUtilities.database.queue import (is_active_chat, add_active_chat, remove_active_chat, music_on, is_music_playing, music_off)
-from Music.MusicUtilities.database.playlist import (get_playlist_count, _get_playlists, get_note_names, get_playlist, save_playlist, delete_playlist)
-from Music.MusicUtilities.database.assistant import (_get_assistant, get_assistant, save_assistant)
-from Music.MusicUtilities.helpers.inline import (play_keyboard, search_markup, play_markup, playlist_markup, audio_markup)
-from Music.MusicUtilities.helpers.inline import play_keyboard, confirm_keyboard, play_list_keyboard, close_keyboard, confirm_group_keyboard
-from Music.MusicUtilities.tgcallsrun import (music, convert, download, clear, get, is_empty, put, task_done, smexy)
-from Music.MusicUtilities.database.queue import (is_active_chat, add_active_chat, remove_active_chat, music_on, is_music_playing, music_off)
-from Music.MusicUtilities.database.onoff import (is_on_off, add_on, add_off)
-from Music.MusicUtilities.database.blacklistchat import (blacklisted_chats, blacklist_chat, whitelist_chat)
-from Music.MusicUtilities.database.gbanned import (get_gbans_count, is_gbanned_user, add_gban_user, add_gban_user)
-from Music.MusicUtilities.database.theme import (_get_theme, get_theme, save_theme)
-from Music.MusicUtilities.database.assistant import (_get_assistant, get_assistant, save_assistant)
-from Music.config import DURATION_LIMIT, ASS_ID
-from Music.MusicUtilities.helpers.decorators import errors
-from Music.MusicUtilities.helpers.filters import command
-from Music.MusicUtilities.helpers.gets import (get_url, themes, random_assistant, ass_det)
-from Music.MusicUtilities.helpers.thumbnails import gen_thumb
-from Music.MusicUtilities.helpers.chattitle import CHAT_TITLE
-from Music.MusicUtilities.helpers.ytdl import ytdl_opts 
-from Music.MusicUtilities.helpers.inline import (play_keyboard, search_markup, play_markup, playlist_markup)
+import aiofiles
 import requests
+import time as sedtime
+
+from os import path
+from time import time
+from .. import converter
+from asyncio import QueueEmpty
+
+from pyrogram import Client, filters
 from pyrogram.types import (
+    Message,
     CallbackQuery,
     InlineKeyboardButton,
     InlineKeyboardMarkup,
     InputMediaPhoto,
-    Message,
 )
-import re
-import aiofiles
+from pytgcalls import StreamType
+from Yukki.config import LOG_GROUP_ID
+from youtubesearchpython import VideosSearch
+from ..YukkiUtilities.tgcallsrun import ASS_ACC
+from Yukki import app, BOT_USERNAME, dbb, SUDOERS
+from pytgcalls.types.input_stream import InputAudioStream, InputStream
+from aiohttp import ClientResponseError, ServerTimeoutError, TooManyRedirects
+from Yukki import dbb, app, BOT_USERNAME, BOT_ID, ASSID, ASSNAME, ASSUSERNAME, ASSMENTION
+from Yukki.YukkiUtilities.tgcallsrun import (yukki, convert, download, clear, get, is_empty, put, task_done, smexy)
+from ..YukkiUtilities.tgcallsrun import (yukki, convert, download, clear, get, is_empty, put, task_done)
+from Yukki.YukkiUtilities.helpers.decorators import errors
+from Yukki.YukkiUtilities.helpers.filters import command, other_filters
+from Yukki.YukkiUtilities.helpers.paste import paste
+from Yukki.YukkiUtilities.tgcallsrun import (yukki, clear, get, is_empty, put, task_done)
+from Yukki.YukkiUtilities.database.queue import (is_active_chat, add_active_chat, remove_active_chat, music_on, is_music_playing, music_off)
+from Yukki.YukkiUtilities.database.playlist import (get_playlist_count, _get_playlists, get_note_names, get_playlist, save_playlist, delete_playlist)
+from Yukki.YukkiUtilities.database.assistant import (_get_assistant, get_assistant, save_assistant)
+from Yukki.YukkiUtilities.helpers.inline import (play_keyboard, search_markup, play_markup, playlist_markup, audio_markup)
+from Yukki.YukkiUtilities.helpers.inline import play_keyboard, confirm_keyboard, play_list_keyboard, close_keyboard, confirm_group_keyboard
+from Yukki.YukkiUtilities.tgcallsrun import (yukki, convert, download, clear, get, is_empty, put, task_done, smexy)
+from Yukki.YukkiUtilities.database.queue import (is_active_chat, add_active_chat, remove_active_chat, music_on, is_music_playing, music_off)
+from Yukki.YukkiUtilities.database.onoff import (is_on_off, add_on, add_off)
+from Yukki.YukkiUtilities.database.blacklistchat import (blacklisted_chats, blacklist_chat, whitelist_chat)
+from Yukki.YukkiUtilities.database.gbanned import (get_gbans_count, is_gbanned_user, add_gban_user, add_gban_user)
+from Yukki.YukkiUtilities.database.theme import (_get_theme, get_theme, save_theme)
+from Yukki.YukkiUtilities.database.assistant import (_get_assistant, get_assistant, save_assistant)
+from ..config import DURATION_LIMIT, ASS_ID
+from ..YukkiUtilities.helpers.decorators import errors
+from ..YukkiUtilities.helpers.filters import command
+from ..YukkiUtilities.helpers.gets import (get_url, themes, random_assistant, ass_det)
+from ..YukkiUtilities.helpers.thumbnails import gen_thumb
+from ..YukkiUtilities.helpers.chattitle import CHAT_TITLE
+from ..YukkiUtilities.helpers.ytdl import ytdl_opts 
+from ..YukkiUtilities.helpers.inline import (play_keyboard, search_markup, play_markup, playlist_markup)
+
 from pykeyboard import InlineKeyboard
-from pyrogram import filters
-from Music import aiohttpsession as session
+from Yukki import aiohttpsession as session
 
 pattern = re.compile(
     r"^text/|json$|yaml$|xml$|toml$|x-sh$|x-shellscript$"
@@ -115,7 +109,7 @@ async def pausevc(_,CallbackQuery):
     chat_id = CallbackQuery.message.chat.id
     if await is_active_chat(chat_id):
         if await is_music_playing(chat_id):
-            await music.pytgcalls.pause_stream(chat_id)
+            await yukki.pytgcalls.pause_stream(chat_id)
             await music_off(chat_id)
             await CallbackQuery.answer("Voicechat Paused", show_alert=True)
             user_id = CallbackQuery.from_user.id
@@ -143,7 +137,7 @@ async def resumevc(_,CallbackQuery):
             return    
         else:
             await music_on(chat_id)
-            await music.pytgcalls.resume_stream(chat_id)
+            await yukki.pytgcalls.resume_stream(chat_id)
             await CallbackQuery.answer("Voicechat Resumed", show_alert=True)
             user_id = CallbackQuery.from_user.id
             user_name = CallbackQuery.from_user.first_name
@@ -172,7 +166,7 @@ async def skipvc(_,CallbackQuery):
             await remove_active_chat(chat_id)
             await CallbackQuery.answer()
             await CallbackQuery.message.reply(f"**⛔️ Skip Button Used By {rpk}**\n\n**🤦‍♂ No More Music In** __Queues__ \n\n**📨 Leaving Voice Chat Now..**")
-            await music.pytgcalls.leave_group_call(chat_id)
+            await yukki.pytgcalls.leave_group_call(chat_id)
             return
         else:
             await CallbackQuery.answer("📨 Voicechat Skipped", show_alert=True)
@@ -229,7 +223,7 @@ async def skipvc(_,CallbackQuery):
                 loop = asyncio.get_event_loop()
                 xx = await loop.run_in_executor(None, download, url, my_hook)
                 file = await convert(xx)
-                await music.pytgcalls.change_stream(
+                await yukki.pytgcalls.change_stream(
                     chat_id, 
                     InputStream(
                         InputAudioStream(
@@ -426,7 +420,7 @@ Personal Playlist Playing."""
                     file = await convert(xx)
                     await music_on(chat_id)
                     await add_active_chat(chat_id)
-                    await music.pytgcalls.join_group_call(
+                    await yukki.pytgcalls.join_group_call(
                         chat_id, 
                         InputStream(
                             InputAudioStream(
@@ -572,7 +566,7 @@ Group Playlist Playing."""
                     file = await convert(xx)
                     await music_on(chat_id)
                     await add_active_chat(chat_id)
-                    await music.pytgcalls.join_group_call(
+                    await yukki.pytgcalls.join_group_call(
                         chat_id, 
                         InputStream(
                             InputAudioStream(
@@ -756,7 +750,7 @@ async def P_list(_,CallbackQuery):
         user_id = CallbackQuery.from_user.id
         user_name = CallbackQuery.from_user.first_name
         a2 = InlineKeyboardButton(text=f"Play {user_name[:17]}'s Playlist", callback_data=f'play_playlist {user_id}|personal')
-        a3 = InlineKeyboardButton(text=f"📨 Check Playlist", url=urlxp)
+        a3 = InlineKeyboardButton(text=f" Check Playlist", url=urlxp)
         key = InlineKeyboardMarkup(
             [
                 [
@@ -811,7 +805,7 @@ async def G_list(_,CallbackQuery):
         user_id = CallbackQuery.from_user.id
         user_name = CallbackQuery.from_user.first_name
         a1 = InlineKeyboardButton(text=f"Play Group's Playlist", callback_data=f'play_playlist {user_id}|group')
-        a3 = InlineKeyboardButton(text=f"📨 Check Playlist", url=urlxp)
+        a3 = InlineKeyboardButton(text=f" Check Playlist", url=urlxp)
         key = InlineKeyboardMarkup(
             [
                 [
