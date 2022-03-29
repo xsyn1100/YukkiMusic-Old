@@ -217,26 +217,26 @@ async def play(_, message: Message):
                     flex[str(bytesx)] += 1
                     try:
                         if eta > 2:
-                            mystic.edit(f"Downloading {title[:50]}\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                     except Exception as e:
                         pass
                 if per > 250:    
                     if flex[str(bytesx)] == 2:
                         flex[str(bytesx)] += 1
                         if eta > 2:     
-                            mystic.edit(f"Downloading {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}..\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                         print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
                 if per > 500:    
                     if flex[str(bytesx)] == 3:
                         flex[str(bytesx)] += 1
                         if eta > 2:     
-                            mystic.edit(f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}...\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                         print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
                 if per > 800:    
                     if flex[str(bytesx)] == 4:
                         flex[str(bytesx)] += 1
                         if eta > 2:    
-                            mystic.edit(f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}....\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                         print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
             if d['status'] == 'finished': 
                 try:
@@ -244,7 +244,7 @@ async def play(_, message: Message):
                 except Exception as e:
                     taken = "00:00"
                 size = d['_total_bytes_str']
-                mystic.edit(f"**Downloaded {title[:55]}...**\n\n**size:** `{size}`\n**time:** {taken} sec\n\n**Converting file** [ffmpeg process]")
+                mystic.edit(f"**📥 Downloaded {title[:55]}...**\n\n**📚 size:** `{size}`\n**⌚ time:** {taken} sec\n\n**⚡ Converting file** [ffmpeg process]")
                 print(f"[{videoid}] Downloaded | Elapsed: {taken} seconds")  
         loop = asyncio.get_event_loop()
         x = await loop.run_in_executor(None, download, link, my_hook)
