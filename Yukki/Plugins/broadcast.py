@@ -58,7 +58,7 @@ async def broadcast_message_pin(_, message):
     await message.reply_text(f"✅ **broadcasted message in {sent} chats\n📌 with {pin} pins.**")
 
 
-@app.on_message(filters.command("broadcast") & filters.user(OWNER))
+@app.on_message(filters.command("gcast") & filters.user(OWNER))
 async def broadcast_message_nopin(_, message):
     if not message.reply_to_message:
         pass
