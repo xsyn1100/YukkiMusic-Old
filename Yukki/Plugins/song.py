@@ -93,7 +93,7 @@ async def musicdl(_, message: Message):
         m = await message.reply_photo(
             photo=thumb,
             reply_markup=InlineKeyboardMarkup(buttons),    
-            caption=(f"🏷 <b>Name:</b> [{title[:65]}]({url})\n\n💡 [Check music information](https://t.me/{BOT_USERNAME}?start=info_{id})")
+            caption=(f"🏷 <b>Title:</b> [{title[:65]}]({url})\n\n💡 [Check music information](https://t.me/{BOT_USERNAME}?start=info_{id})")
         )   
         os.remove(thumb)
     else:
@@ -125,7 +125,7 @@ async def musicdl(_, message: Message):
         link = "https://www.youtube.com/watch?v={id}"
         buttons = search_markup(ID1, ID2, ID3, ID4, ID5, duration1, duration2, duration3, duration4, duration5, user_id, query)
         await mystic.edit(
-            f"• Choose the results to download !\n\n1️⃣ <b>[{title1[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID1})\n\n2️⃣ <b>[{title2[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID2})\n\n3️⃣ <b>[{title3[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID3})\n\n4️⃣ <b>[{title4[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID4})\n\n5️⃣ <b>[{title5[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID5})",
+            f"❓ Choose the results to download !\n\n1️⃣ <b>[{title1[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID1})\n\n2️⃣ <b>[{title2[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID2})\n\n3️⃣ <b>[{title3[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID3})\n\n4️⃣ <b>[{title4[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID4})\n\n5️⃣ <b>[{title5[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID5})",
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True
         )
@@ -170,7 +170,7 @@ async def download_data(_,CallbackQuery):
     m = await CallbackQuery.message.reply_photo(
         photo=thumb,
         reply_markup=InlineKeyboardMarkup(buttons),    
-        caption=(f"🏷 **Name:** [{title[:80]}]({url})\n\n💡 [Check music information](https://t.me/{BOT_USERNAME}?start=info_{id})")
+        caption=(f"🏷 **Title:** [{title[:80]}]({url})\n\n💡 [Check music information](https://t.me/{BOT_USERNAME}?start=info_{id})")
     )   
     os.remove(thumb)
     await CallbackQuery.message.delete()
@@ -229,7 +229,7 @@ async def chonga(_,CallbackQuery):
         link = "https://www.youtube.com/watch?v={id}"
         buttons = search_markup2(ID6, ID7, ID8, ID9, ID10, duration6, duration7, duration8, duration9, duration10 ,user_id, query)
         await CallbackQuery.edit_message_text(
-            f"• Choose the results to download !\n\n6️⃣ <b>[{title6[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID6})\n\n7️⃣ <b>[{title7[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID7})\n\n8️⃣ <b>[{title8[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID8})\n\n9️⃣ <b>[{title9[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID9})\n\n🔟 <b>[{title10[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID10})",    
+            f"❓ Choose the results to download !\n\n6️⃣ <b>[{title6[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID6})\n\n7️⃣ <b>[{title7[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID7})\n\n8️⃣ <b>[{title8[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID8})\n\n9️⃣ <b>[{title9[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID9})\n\n🔟 <b>[{title10[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID10})",    
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True
         )
@@ -238,7 +238,7 @@ async def chonga(_,CallbackQuery):
         link = "https://www.youtube.com/watch?v={id}"
         buttons = search_markup(ID1, ID2, ID3, ID4, ID5, duration1, duration2, duration3, duration4, duration5, user_id, query)
         await CallbackQuery.edit_message_text(
-            f"• Choose the results to download !\n\n1️⃣ <b>[{title1[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID1})\n\n2️⃣ <b>[{title2[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID2})\n\n3️⃣ <b>[{title3[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID3})\n\n4️⃣ <b>[{title4[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID4})\n\n5️⃣ <b>[{title5[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID5})",    
+            f"❓ Choose the results to download !\n\n1️⃣ <b>[{title1[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID1})\n\n2️⃣ <b>[{title2[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID2})\n\n3️⃣ <b>[{title3[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID3})\n\n4️⃣ <b>[{title4[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID4})\n\n5️⃣ <b>[{title5[:30]}...]({link})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID5})",    
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True
         )
@@ -288,8 +288,8 @@ def search_markup2(ID6, ID7, ID8, ID9, ID10, duration6, duration7, duration8, du
 def gets(videoid, user_id):
     buttons= [
             [
-                InlineKeyboardButton(text="📥 Get Audio", callback_data=f'gets audio|{videoid}|{user_id}'),
-                InlineKeyboardButton(text="📥 Get Video", callback_data=f'gets video|{videoid}|{user_id}')
+                InlineKeyboardButton(text="Get Audio", callback_data=f'gets audio|{videoid}|{user_id}'),
+                InlineKeyboardButton(text="Get Video", callback_data=f'gets video|{videoid}|{user_id}')
             ],
             [
                 InlineKeyboardButton(text="🗑 Close", callback_data=f'close2')
