@@ -23,10 +23,10 @@ async def useradd(_, message: Message):
         from_user = message.from_user 
         sudoers = await get_sudoers()
         if user.id in sudoers:
-            return await message.reply_text("✅ already a **sudo user**")
+            return await message.reply_text(" already a **sudo user**")
         added = await add_sudo(user.id)
         if added:
-            await message.reply_text(f"✅ added **{user.mention}** to sudo user list !")
+            await message.reply_text(f" added **{user.mention}** to sudo user list !")
             return os.execvp("python3", ["python3", "-m", "Yukki"])
         await edit_or_reply(message, text="something wrong happened, check logs.")  
         return
@@ -35,10 +35,10 @@ async def useradd(_, message: Message):
     mention = message.reply_to_message.from_user.mention
     sudoers = await get_sudoers()
     if user_id in sudoers:
-        return await message.reply_text("✅ already a **sudo user**")
+        return await message.reply_text(" already a **sudo user**")
     added = await add_sudo(user_id)
     if added:
-        await message.reply_text(f"✅ added **{mention}** sudo user list !")
+        await message.reply_text(f"added **{mention}** sudo user list !")
         return os.execvp("python3", ["python3", "-m", "Yukki"])
     await edit_or_reply(message, text="something wrong happened, check logs.")  
     return    
@@ -56,10 +56,10 @@ async def userdel(_, message: Message):
         user = (await app.get_users(user))
         from_user = message.from_user      
         if user.id not in await get_sudoers():
-            return await message.reply_text(f"❌ user is not a part of veez mega")        
+            return await message.reply_text(f" user is not a part of syn robot")        
         removed = await remove_sudo(user.id)
         if removed:
-            await message.reply_text(f"✅ removed **{user.mention}** from sudo user list")
+            await message.reply_text(f" removed **{user.mention}** from sudo user list")
             return os.execvp("python3", ["python3", "-m", "Yukki"])
         await message.reply_text(f"something wrong happened, check logs.")
         return
@@ -67,10 +67,10 @@ async def userdel(_, message: Message):
     user_id = message.reply_to_message.from_user.id
     mention = message.reply_to_message.from_user.mention
     if user_id not in await get_sudoers():
-        return await message.reply_text(f"❌ user is not a part of **veez mega**")        
+        return await message.reply_text(f"user is not a part of **syn robot**")        
     removed = await remove_sudo(user_id)
     if removed:
-        await message.reply_text(f"✅ removed **{mention}** from sudo user list")
+        await message.reply_text(f"removed **{mention}** from sudo user list")
         return os.execvp("python3", ["python3", "-m", "Yukki"])
     await message.reply_text(f"something wrong happened, check logs.")
                 
@@ -87,6 +87,6 @@ async def sudoers_list(_, message: Message):
             continue                     
         text += f"➤ {user}\n"
     if not text:
-        await message.reply_text("❌ no sudo users found")  
+        await message.reply_text(" no sudo users found")  
     else:
         await message.reply_text(text) 
