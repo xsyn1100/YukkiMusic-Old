@@ -7,11 +7,11 @@ from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 import asyncio
 
-@app.on_message(filters.command("gban") & filters.user(OWNER))
+@app.on_message(filters.command("mgban") & filters.user(OWNER))
 async def ban_globally(_, message):  
     if not message.reply_to_message:
         if len(message.command) < 2:
-            await message.reply_text("**usage:**\n\n/gban [username / user_id]")
+            await message.reply_text("**usage:**\n\n/mgban [username / user_id]")
             return
         user = message.text.split(None, 2)[1]
         if "@" in user:
