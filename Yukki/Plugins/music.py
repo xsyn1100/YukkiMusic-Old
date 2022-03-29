@@ -65,7 +65,7 @@ async def play(_, message: Message):
     await message.delete()
     chat_id = message.chat.id
     if not await is_served_chat(chat_id):
-        await message.reply(f"❌ **This chat not authorized !**\n\nI can't stream music in non-authorized chat, ask to sudo user to auth this chat.\n\nCheck the sudo user list [From Here](https://t.me/{BOT_USERNAME}?start=sudolist)", disable_web_page_preview=True)
+        await message.reply(f"**This chat not authorized !**\n\nI can't stream music in non-authorized chat, ask to sudo user to auth this chat.\n\nCheck the sudo user list [From Here](https://t.me/{BOT_USERNAME}?start=sudolist)", disable_web_page_preview=True)
         return await app.leave_chat(chat_id)  
     if message.sender_chat:
         return await message.reply_text("you're an __Anonymous__ Admin !\n\n» revert back to user account from admin rights.")  
@@ -120,7 +120,7 @@ async def play(_, message: Message):
         except UserAlreadyParticipant:
             pass
         except Exception as e:
-            return await message.reply_text(f"❌ **Assistant failed to join**\n\n**reason**: `{e}`")
+            return await message.reply_text(f"**Assistant failed to join**\n\n**reason**: `{e}`")
     audio = (message.reply_to_message.audio or message.reply_to_message.voice) if message.reply_to_message else None
     url = get_url(message)
     fucksemx = 0
@@ -132,7 +132,7 @@ async def play(_, message: Message):
             return
         duration = round(audio.duration / 60)
         if duration > DURATION_LIMIT:
-            return await mystic.edit_text(f"❌ **__Duration Error__**\n\n**Allowed Duration: **{DURATION_LIMIT} minute(s)\n**Received Duration:** {duration} minute(s)")
+            return await mystic.edit_text(f"**__Duration Error__**\n\n**Allowed Duration: **{DURATION_LIMIT} minute(s)\n**Received Duration:** {duration} minute(s)")
         file_name = audio.file_unique_id + '.' + (
             (
                 audio.file_name.split('.')[-1]
@@ -188,11 +188,11 @@ async def play(_, message: Message):
             return await mystic.edit_text(f"song not found.\n\n**reason:** {e}")    
         smex = int(time_to_seconds(duration))
         if smex > DURATION_LIMIT:
-            return await mystic.edit_text(f"❌ **__Duration Error__**\n\n**Allowed Duration: **90 minute(s)\n**Received Duration:** {duration} minute(s)")
+            return await mystic.edit_text(f"**__Duration Error__**\n\n**Allowed Duration: **90 minute(s)\n**Received Duration:** {duration} minute(s)")
         if duration == "None":
-            return await mystic.edit_text("❌ live stream not supported")
+            return await mystic.edit_text("live stream not supported")
         if views == "None":
-            return await mystic.edit_text("❌ live stream not supported")
+            return await mystic.edit_text("live stream not supported")
         semxbabes = (f"📥 downloading: {title[:55]}")
         await mystic.edit(semxbabes)
         theme = random.choice(themes)
@@ -217,26 +217,26 @@ async def play(_, message: Message):
                     flex[str(bytesx)] += 1
                     try:
                         if eta > 2:
-                            mystic.edit(f"Downloading {title[:50]}\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                     except Exception as e:
                         pass
                 if per > 250:    
                     if flex[str(bytesx)] == 2:
                         flex[str(bytesx)] += 1
                         if eta > 2:     
-                            mystic.edit(f"Downloading {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}..\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                         print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
                 if per > 500:    
                     if flex[str(bytesx)] == 3:
                         flex[str(bytesx)] += 1
                         if eta > 2:     
-                            mystic.edit(f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}...\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                         print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
                 if per > 800:    
                     if flex[str(bytesx)] == 4:
                         flex[str(bytesx)] += 1
                         if eta > 2:    
-                            mystic.edit(f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                            mystic.edit(f"📥 Downloading {title[:50]}....\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                         print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
             if d['status'] == 'finished': 
                 try:
@@ -263,7 +263,7 @@ async def play(_, message: Message):
             return
         
         query = " ".join(message.command[1:])
-        mystic = await _.send_message(chat_id, "🔍 **Searching song**")
+        mystic = await _.send_message(chat_id, "🔎 **Searching song**")
         try:
             a = VideosSearch(query, limit=5)
             result = (a.result()).get("result")
@@ -320,7 +320,7 @@ async def play(_, message: Message):
         checking = f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
         await message.reply_photo(
             photo=thumb,
-            caption=(f"💡 **Track added to queue »** {position}\n\n🗂 **Name:** [{title[:35]}...]({link}) \n⏱ **Duration:** `{duration}` \n🧸 **Request by:** {checking}"),
+            caption=(f"💡 **Track added to queue »** {position}\n\n🏷 **Title:** [{title[:35]}...]({link}) \n🕰 **Duration:** `{duration}` \n🎧 **Request by:** {checking}"),
             reply_markup=InlineKeyboardMarkup(buttons)
         )
         return await mystic.delete()     
@@ -354,7 +354,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo=thumb,
         reply_markup=InlineKeyboardMarkup(buttons),    
-        caption=(f"🏷 **Title:** [{title[:95]}]({link})\n🕰 Duration: `{duration}`\n🎧 Request by:** {checking}")
+        caption=(f"🏷 **Title:** [{title[:35]}]({link})\n🕰 Duration: `{duration}`\n🎧 Request by:** {checking}")
     )   
         return await mystic.delete()
          
@@ -371,7 +371,7 @@ async def startyuplay(_,CallbackQuery):
     except Exception as e:
         return await CallbackQuery.message.edit(f"an error occured\n\n**reason**:{e}")
     if duration == "None":
-        return await CallbackQuery.answer("❌ live stream not supported", show_alert=True)      
+        return await CallbackQuery.answer(" live stream not supported", show_alert=True)      
     if CallbackQuery.from_user.id != int(user_id):
         return await CallbackQuery.answer("💡 sorry this not your request", show_alert=True)
     await CallbackQuery.message.delete()
@@ -381,13 +381,13 @@ async def startyuplay(_,CallbackQuery):
     idx = id
     smex = int(time_to_seconds(duration))
     if smex > DURATION_LIMIT:
-        await CallbackQuery.message.reply_text(f"❌ **__Duration Error__**\n\n**Allowed Duration: **90 minute(s)\n**Received Duration:** {duration} minute(s)")
+        await CallbackQuery.message.reply_text(f"**__Duration Error__**\n\n**Allowed Duration: **90 minute(s)\n**Received Duration:** {duration} minute(s)")
         return 
     try:
         with yt_dlp.YoutubeDL(ytdl_opts) as ytdl:
             x = ytdl.extract_info(url, download=False)
     except Exception as e:
-        return await CallbackQuery.message.reply_text(f"❌ failed to download video.\n\n**reason**: `{e}`") 
+        return await CallbackQuery.message.reply_text(f" failed to download video.\n\n**reason**: `{e}`") 
     title = (x["title"])
     mystic = await CallbackQuery.message.reply_text(f"📥 downloading: {title[:55]}")
     thumbnail = (x["thumbnail"])
@@ -410,26 +410,26 @@ async def startyuplay(_,CallbackQuery):
                 flex[str(bytesx)] += 1
                 try:
                     if eta > 2:
-                        mystic.edit(f"Downloading {title[:50]}\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                        mystic.edit(f"📥 Downloading {title[:50]}\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                 except Exception as e:
                     pass
             if per > 250:    
                 if flex[str(bytesx)] == 2:
                     flex[str(bytesx)] += 1
                     if eta > 2:     
-                        mystic.edit(f"Downloading {title[:50]}..\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                        mystic.edit(f"📥 Downloading {title[:50]}..\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                     print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
             if per > 500:    
                 if flex[str(bytesx)] == 3:
                     flex[str(bytesx)] += 1
                     if eta > 2:     
-                        mystic.edit(f"Downloading {title[:50]}...\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                        mystic.edit(f"📥 Downloading {title[:50]}...\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                     print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
             if per > 800:    
                 if flex[str(bytesx)] == 4:
                     flex[str(bytesx)] += 1
                     if eta > 2:    
-                        mystic.edit(f"Downloading {title[:50]}....\n\n**FileSize:** {size}\n**Downloaded:** {percentage}\n**Speed:** {speed}\n**ETA:** {eta} sec")
+                        mystic.edit(f"📥 Downloading {title[:50]}....\n\n**📚 FileSize:** {size}\n**🗃 Downloaded:** {percentage}\n**⚡ Speed:** {speed}\n**ETA:** {eta} sec")
                     print(f"[{videoid}] Downloaded {percentage} at a speed of {speed} | ETA: {eta} seconds")
         if d['status'] == 'finished': 
             try:
@@ -437,7 +437,7 @@ async def startyuplay(_,CallbackQuery):
             except Exception as e:
                 taken = "00:00"
             size = d['_total_bytes_str']
-            mystic.edit(f"**Downloaded: {title[:55]}...**\n\n**size:** `{size}`\n**time:** `{taken}` sec\n\n**Converting file [ffmpeg process]")
+            mystic.edit(f"**📥 Downloaded: {title[:55]}...**\n\n**📚 size:** `{size}`\n**⌚ time:** `{taken}` sec\n\n**📝 Converting file [ffmpeg process]")
             print(f"[{videoid}] Downloaded | Elapsed: {taken} seconds")    
     loop = asyncio.get_event_loop()
     x = await loop.run_in_executor(None, download, url, my_hook)
@@ -486,14 +486,14 @@ async def startyuplay(_,CallbackQuery):
                 stream_type=StreamType().local_stream,
             ) 
         except NoActiveGroupCall:
-            return await app.send_message(chat_id, "😕 Sorry, **no** active video chat!\n\n• to use me, **start one.**", reply_markup=close_keyboard)
+            return await app.send_message(chat_id, "Sorry, **no** active video chat!\n\n• to use me, **start one.**", reply_markup=close_keyboard)
         await add_active_chat(chat_id)
         buttons = play_markup(videoid, user_id)
         await mystic.delete()
         m = await CallbackQuery.message.reply_photo(
         photo=thumb,
         reply_markup=InlineKeyboardMarkup(buttons),    
-        caption=(f"🏷 **Title:** [{title[:95]}]({url}) \n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {checking}")
+        caption=(f"🏷 **Title:** [{title[:35]}]({url}) \n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {checking}")
     )   
         os.remove(thumb)
         await CallbackQuery.message.delete()
@@ -547,7 +547,7 @@ async def popat(_, CallbackQuery):
         ID9 = (result[8]["id"])
         ID10 = (result[9]["id"])                    
     except Exception as e:
-        return await mystic.edit_text("😕 Sorry, we **couldn't** find the song you were looking for\n\n• Check that the **name is correct** or **try by searching the artist.**", reply_markup=close_keyboard)
+        return await mystic.edit_text(" Sorry, we **couldn't** find the song you were looking for\n\n• Check that the **name is correct** or **try by searching the artist.**", reply_markup=close_keyboard)
     if i == 1:
         url = "https://www.youtube.com/watch?v={id}"
         buttons = search_markup2(ID6, ID7, ID8, ID9, ID10, duration6, duration7, duration8, duration9, duration10 ,user_id, query)
