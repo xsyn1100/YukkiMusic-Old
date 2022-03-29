@@ -60,7 +60,7 @@ def convert_seconds(seconds):
     return "%02d:%02d" % (minutes, seconds)
 
 
-@Client.on_message(command(["play", "play@VeezMegaBot"]) & other_filters)
+@Client.on_message(command(["play", "play@synxrobot"]) & other_filters)
 async def play(_, message: Message):
     await message.delete()
     chat_id = message.chat.id
@@ -172,7 +172,7 @@ async def play(_, message: Message):
         
     elif url:
         query = " ".join(message.command[1:])
-        mystic = await _.send_message(chat_id, "🔍 **Searching song**")
+        mystic = await _.send_message(chat_id, "🔎 **Searching song**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = VideosSearch(query, limit=1)
@@ -185,7 +185,7 @@ async def play(_, message: Message):
                 idxz = (result["id"])
                 videoid = (result["id"])
         except Exception as e:
-            return await mystic.edit_text(f"song not found.\n\n**reason:** {e}")    
+            return await mystic.edit_text(f"🤷‍♀️ song not found.\n\n**reason:** {e}")    
         smex = int(time_to_seconds(duration))
         if smex > DURATION_LIMIT:
             return await mystic.edit_text(f"**__Duration Error__**\n\n**Allowed Duration: **90 minute(s)\n**Received Duration:** {duration} minute(s)")
@@ -288,7 +288,7 @@ async def play(_, message: Message):
         url = "https://www.youtube.com/watch?v={id}"
         buttons = search_markup(ID1, ID2, ID3, ID4, ID5, duration1, duration2, duration3, duration4, duration5, user_id, query)
         await mystic.edit(
-            f"❓ Choose the results to play !\n\n1️⃣ <b>[{title1[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n2️⃣ <b>[{title2[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n3️⃣ <b>[{title3[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n4️⃣ <b>[{title4[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n5️⃣ <b>[{title5[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__",    
+            f"❓ Choose the results to play :\n\n1️⃣ <b>[{title1[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n2️⃣ <b>[{title2[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n3️⃣ <b>[{title3[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n4️⃣ <b>[{title4[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n5️⃣ <b>[{title5[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__",    
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True
         ) 
@@ -320,7 +320,7 @@ async def play(_, message: Message):
         checking = f"[{message.from_user.first_name}](tg://user?id={message.from_user.id})"
         await message.reply_photo(
             photo=thumb,
-            caption=(f"💡 **Track added to queue »** {position}\n\n🏷 **Title:** [{title[:35]}...]({link}) \n🕰 **Duration:** `{duration}` \n🎧 **Request by:** {checking}"),
+            caption=(f"💡 **Track added to queue »** {position}\n\n🏷 **Title:** [{title[:30]}...]({link}) \n🕰 **Duration:** `{duration}` \n🎧 **Request by:** {checking}"),
             reply_markup=InlineKeyboardMarkup(buttons)
         )
         return await mystic.delete()     
@@ -354,7 +354,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo=thumb,
         reply_markup=InlineKeyboardMarkup(buttons),    
-        caption=(f"🏷 **Title:** [{title[:35]}]({link})\n🕰 Duration: `{duration}`\n🎧 Request by:** {checking}")
+        caption=(f"🏷 **Title:** [{title[:30]}]({link})\n🕰 Duration: `{duration}`\n🎧 Request by:** {checking}")
     )   
         return await mystic.delete()
          
@@ -468,7 +468,7 @@ async def startyuplay(_,CallbackQuery):
         await mystic.delete()
         m = await CallbackQuery.message.reply_photo(
         photo=thumb,
-        caption=(f"💡 **Track added to queue »** `{position}`\n\n🏷 **Title:** [{title[:35]}...]({url})\n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {checking}"),
+        caption=(f"💡 **Track added to queue »** `{position}`\n\n🏷 **Title:** [{title[:30]}...]({url})\n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {checking}"),
         reply_markup=InlineKeyboardMarkup(buttons)
     )
         os.remove(thumb)
@@ -493,7 +493,7 @@ async def startyuplay(_,CallbackQuery):
         m = await CallbackQuery.message.reply_photo(
         photo=thumb,
         reply_markup=InlineKeyboardMarkup(buttons),    
-        caption=(f"🏷 **Title:** [{title[:35]}]({url}) \n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {checking}")
+        caption=(f"🏷 **Title:** [{title[:30]}]({url}) \n🕰 **Duration:** `{duration}`\n🎧 **Request by:** {checking}")
     )   
         os.remove(thumb)
         await CallbackQuery.message.delete()
@@ -552,7 +552,7 @@ async def popat(_, CallbackQuery):
         url = "https://www.youtube.com/watch?v={id}"
         buttons = search_markup2(ID6, ID7, ID8, ID9, ID10, duration6, duration7, duration8, duration9, duration10 ,user_id, query)
         await CallbackQuery.edit_message_text(
-            f"❓ Choose the results to play !\n\n6️⃣ <b>[{title6[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID6})\n\n7️⃣ <b>[{title7[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID7})\n\n8️⃣ <b>[{title8[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID8})\n\n9️⃣ <b>[{title9[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID9})\n\n🔟 <b>[{title10[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID10})",    
+            f"❓ Choose the results to play :\n\n6️⃣ <b>[{title6[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n7️⃣ <b>[{title7[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n8️⃣ <b>[{title8[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n9️⃣ <b>[{title9[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n🔟 <b>[{title10[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__",    
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True
         )
@@ -561,14 +561,14 @@ async def popat(_, CallbackQuery):
         url = "https://www.youtube.com/watch?v={id}"
         buttons = search_markup(ID1, ID2, ID3, ID4, ID5, duration1, duration2, duration3, duration4, duration5, user_id, query)
         await CallbackQuery.edit_message_text(
-            f"❓ Choose the results to play !\n\n1️⃣ <b>[{title1[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID1})\n\n2️⃣ <b>[{title2[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID2})\n\n3️⃣ <b>[{title3[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID3})\n\n4️⃣ <b>[{title4[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID4})\n\n5️⃣ <b>[{title5[:30]}...]({url})</b>\n └ 💡 [More information](https://t.me/{BOT_USERNAME}?start=info_{ID5})",    
+            f"❓ Choose the results to play :\n\n1️⃣ <b>[{title1[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n2️⃣ <b>[{title2[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n3️⃣ <b>[{title3[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n4️⃣ <b>[{title4[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__\n\n5️⃣ <b>[{title5[:30]}...]({url})</b>\n  ├  💡 <u>__[More Information](https://t.me/{BOT_USERNAME}?start=info_{ID1})__</u>\n  └ ⚡ __Powered by sʏɴ ʀᴏʙᴏᴛ__",    
             reply_markup=InlineKeyboardMarkup(buttons),
             disable_web_page_preview=True
         )
         return
 
 
-@Client.on_message(command(["playplaylist", "playplaylist@VeezMegaBot"]) & other_filters)
+@Client.on_message(command(["playplaylist", "playplaylist@synxrobot"]) & other_filters)
 async def play_playlist_cmd(_, message):
     thumb ="cache/playlist.png"
     user_id = message.from_user.id
