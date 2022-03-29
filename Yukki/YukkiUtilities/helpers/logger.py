@@ -1,6 +1,6 @@
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from Yukki.config import LOG_GROUP_ID
-from Music import app
+from Yukki import app
 
 
 async def LOG_CHAT(message, what):
