@@ -3,7 +3,7 @@ from typing import Callable, Dict, List
 from pyrogram import Client
 from pyrogram.types import Chat, Message
 
-from Music import SUDOERS
+from Yukki import SUDOERS
 
 admins = {}
 
