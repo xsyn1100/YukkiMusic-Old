@@ -14,7 +14,7 @@ from Yukki.YukkiUtilities.tgcallsrun import queues
 from Yukki.config import LOG_GROUP_ID
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from Yukki.YukkiUtilities.helpers.inline import play_keyboard
-from Yukki.Utilities.database.assistant import (_get_assistant, get_assistant, save_assistant)
+from Yukki.YukkiUtilities.database.assistant import (_get_assistant, get_assistant, save_assistant)
 import os
 from os import path
 from Yukki import BOT_USERNAME
@@ -28,7 +28,7 @@ from Yukki.YukkiUtilities.helpers.thumbnails import gen_thumb
 from Yukki.YukkiUtilities.helpers.chattitle import CHAT_TITLE
 from Yukki.YukkiUtilities.helpers.ytdl import ytdl_opts 
 from Yukki.YukkiUtilities.helpers.inline import (play_keyboard, search_markup, play_markup, playlist_markup, audio_markup)
-from Yukki.Utilities.tgcallsrun import (convert, download)
+from Yukki.YukkiUtilities.tgcallsrun import (convert, download)
 from pyrogram import filters
 from typing import Union
 from youtubesearchpython import VideosSearch
