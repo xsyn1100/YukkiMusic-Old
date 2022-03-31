@@ -1,6 +1,6 @@
 import asyncio
 import os
-from Yukki.MusicUtilities.tgcallsrun import ASS_ACC
+from Yukki.YukkiUtilities.tgcallsrun import ASS_ACC
 
 from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant
@@ -16,10 +16,10 @@ from pytgcalls.types.input_stream.quality import (
 from youtubesearchpython import VideosSearch
 from Yukki.config import GROUP, CHANNEL
 from Yukki import BOT_NAME, BOT_USERNAME, app
-from Yukki.MusicUtilities.tgcallsrun.music import pytgcalls as call_py
-from Yukki.MusicUtilities.helpers.filters import command
-from Yukki.MusicUtilities.helpers.logger import LOG_CHAT
-from Yukki.MusicUtilities.tgcallsrun.queues import (
+from Yukki.YukkiUtilities.tgcallsrun.music import pytgcalls as call_py
+from Yukki.YukkiUtilities.helpers.filters import command
+from Yukki.YukkiUtilities.helpers.logger import LOG_CHAT
+from Yukki.YukkiUtilities.tgcallsrun.queues import (
     QUEUE,
     add_to_queue,
     clear_queue,
