@@ -13,7 +13,7 @@ from Yukki.YukkiUtilities.database.queue import (is_active_chat, add_active_chat
 from Yukki.YukkiUtilities.tgcallsrun import queues
 from Yukki.config import LOG_GROUP_ID
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from Yukki.MusicUtilities.helpers.inline import play_keyboard
+from Yukki.YukkiUtilities.helpers.inline import play_keyboard
 from Yukki.Utilities.database.assistant import (_get_assistant, get_assistant, save_assistant)
 import os
 from os import path
