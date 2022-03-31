@@ -10,11 +10,11 @@ from pytgcalls.types.input_stream.quality import (
 )
 from pytgcalls.types.stream import StreamVideoEnded
 
-from Music import app
-from Music.config import GROUP, CHANNEL
-from Music.MusicUtilities.tgcallsrun.music import pytgcalls as call_py
+from Yukki import app
+from Yukki.config import GROUP, CHANNEL
+from Yukki.YukkiUtilities.tgcallsrun.music import pytgcalls as call_py
 
-from Music.MusicUtilities.tgcallsrun.queues import (
+from Yukki.YukkiUtilities.tgcallsrun.queues import (
     QUEUE,
     clear_queue,
     get_queue,
